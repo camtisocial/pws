@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { WorkService } from './workService';
-import { WorkController } from './workController';
+import { WorkService } from './WorkService';
+import { WorkController } from './WorkController';
 
 @Module({
   providers: [WorkService],
