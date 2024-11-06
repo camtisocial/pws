@@ -5,13 +5,13 @@ import {
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import * as process from 'process';
 import { HttpInstrumentation } from '@opentelemetry/instrumentation-http';
-import { ExpressInstrumentation } from '@opentelemetry/instrumentation-express';
+import { PgInstrumentation } from '@opentelemetry/instrumentation-pg';
 
 const traceExporter = new ConsoleSpanExporter();
 
 export const otelSDK = new NodeSDK({
   spanProcessor: new SimpleSpanProcessor(traceExporter),
-  instrumentations: [new HttpInstrumentation(), new ExpressInstrumentation()],
+  instrumentations: [new HttpInstrumentation(), new PgInstrumentation()],
 });
 
 process.on('SIGTERM', () => {

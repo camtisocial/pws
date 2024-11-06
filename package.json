@@ -27,6 +27,7 @@
     "@nestjs/typeorm": "^10.0.2",
     "@opentelemetry/instrumentation-express": "^0.44.0",
     "@opentelemetry/instrumentation-http": "^0.54.1",
+    "@opentelemetry/instrumentation-pg": "^0.47.0",
     "@opentelemetry/sdk-node": "^0.54.1",
     "@opentelemetry/sdk-trace-base": "^1.27.0",
     "dotenv": "^16.4.5",
