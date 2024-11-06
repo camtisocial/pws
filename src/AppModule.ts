@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './AppController';
 import { AppService } from './AppService';
-import { WinstonLogger } from './Winston.service';
 import { AboutModule } from './about/AboutModule';
 import { BlogModule } from './blog/BlogModule';
 import { CookingModule } from './cooking/CookingModule';
+import { LoggerModule } from 'nestjs-pino';
 import { GameDevModule } from './game-dev/GameDevModule';
 import { WorkModule } from './work/WorkModule';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -21,9 +21,24 @@ TypeOrmModule.forRoot({
 });
 
 @Module({
-  imports: [AboutModule, BlogModule, CookingModule, GameDevModule, WorkModule],
+  imports: [
+    AboutModule,
+    BlogModule,
+    CookingModule,
+    GameDevModule,
+    WorkModule,
+    LoggerModule.forRoot({
+      pinoHttp: {
+        customProps: (req, res) => ({ context: 'HTTP' }),
+        transport: {
+          target: 'pino-pretty',
+          options: { colorize: true, singleLine: true },
+        },
+      },
+    }),
+  ],
   controllers: [AppController],
-  providers: [AppService, { provide: 'LoggerService', useValue: WinstonLogger }],
-  exports: ['LoggerService'],
+  providers: [AppService],
+  exports: [],
 })
 export class AppModule {}

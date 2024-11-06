@@ -25,12 +25,19 @@
     "@nestjs/cqrs": "^10.2.8",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/typeorm": "^10.0.2",
+    "@opentelemetry/instrumentation-express": "^0.44.0",
+    "@opentelemetry/instrumentation-http": "^0.54.1",
+    "@opentelemetry/sdk-node": "^0.54.1",
+    "@opentelemetry/sdk-trace-base": "^1.27.0",
+    "dotenv": "^16.4.5",
     "nest-winston": "^1.9.7",
+    "nestjs-pino": "^4.1.0",
     "pg": "^8.13.1",
+    "pino-http": "^10.3.0",
+    "pino-pretty": "^11.3.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.20",
-    "winston": "^3.16.0"
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
