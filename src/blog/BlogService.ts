@@ -1,8 +1,24 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Blog } from './Blog';
 
 @Injectable()
 export class BlogService {
-    getBlog(): string {
-        return 'Hello Blog!!!';
-    }
+  constructor(
+    @InjectRepository(Blog)
+    private blogRepository: Repository<Blog>,
+  ) {}
+
+  async createBlog(blog: Blog): Promise<Blog> {
+    return this.blogRepository.save(blog);
+  }
+
+  async getBlogs(): Promise<Blog[]> {
+    return this.blogRepository.find();
+  }
+
+  getBlog(): string {
+    return 'Hello Blog!!!';
+  }
 }
