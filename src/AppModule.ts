@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './AppController';
 import { AppService } from './AppService';
+import { WinstonLogger } from './Winston.service';
 import { AboutModule } from './about/AboutModule';
 import { BlogModule } from './blog/BlogModule';
 import { CookingModule } from './cooking/CookingModule';
@@ -22,6 +23,7 @@ TypeOrmModule.forRoot({
 @Module({
   imports: [AboutModule, BlogModule, CookingModule, GameDevModule, WorkModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, { provide: 'LoggerService', useValue: WinstonLogger }],
+  exports: ['LoggerService'],
 })
 export class AppModule {}
