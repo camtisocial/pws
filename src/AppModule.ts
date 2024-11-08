@@ -9,35 +9,41 @@ import { GameDevModule } from './game-dev/GameDevModule';
 import { WorkModule } from './work/WorkModule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import databaseConfig from './database/database.config';
+import AppConfig from './AppConfig';
 
 dotenv.config({ path: 'config.local.env' });
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: parseInt(process.env.POSTGRES_PORT, 10),
-      username: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DB,
-      autoLoadEntities: true,
-      synchronize: false,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      cache: true,
+      load: [databaseConfig, AppConfig],
     }),
-    AboutModule,
-    BlogModule,
-    CookingModule,
-    GameDevModule,
-    WorkModule,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        ...configService.get('database'),
+      }),
+      inject: [ConfigService],
+    }),
     LoggerModule.forRoot({
       pinoHttp: {
-        customProps: (req, res) => ({ context: 'HTTP' }),
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        customProps: (_req, _res) => ({ context: 'HTTP' }),
         transport: {
           target: 'pino-pretty',
           options: { colorize: true, singleLine: true },
         },
       },
     }),
+    AboutModule,
+    BlogModule,
+    CookingModule,
+    GameDevModule,
+    WorkModule,
   ],
   controllers: [AppController],
   providers: [AppService],
