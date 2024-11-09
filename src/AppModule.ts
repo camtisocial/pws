@@ -2,11 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppController } from './AppController';
 import { AppService } from './AppService';
 import { AboutModule } from './about/AboutModule';
+import { AuthModule } from './auth/AuthModule';
 import { BlogModule } from './blog/BlogModule';
-import { CookingModule } from './cooking/CookingModule';
 import { LoggerModule } from 'nestjs-pino';
-import { GameDevModule } from './game-dev/GameDevModule';
-import { WorkModule } from './work/WorkModule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -41,9 +39,7 @@ dotenv.config({ path: 'config.local.env' });
     }),
     AboutModule,
     BlogModule,
-    CookingModule,
-    GameDevModule,
-    WorkModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
