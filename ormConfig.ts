@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config({ path: 'config.local.env' });
 
-const AppDataSource = new DataSource({
+export const AppDataSource = new DataSource({
   type: 'postgres',
   host: process.env.POSTGRES_HOST,
   port: parseInt(process.env.POSTGRES_PORT, 10),
@@ -11,8 +11,8 @@ const AppDataSource = new DataSource({
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
   synchronize: process.env.POSTGRES_SYNCHRONIZE === 'true',
-  entities: [`${__dirname}/../src/**/*.entity{.ts,.js}`],
-  migrations: [`${__dirname}/migrations/*{.ts,.js}`],
+  entities: [`${__dirname}/src/**/*.entity{.ts,.js}`],
+  migrations: [`${__dirname}/src/database/migrations/*{.ts,.js}`],
 });
 
 module.exports = AppDataSource;
