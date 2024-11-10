@@ -10,6 +10,7 @@ import * as dotenv from 'dotenv';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import databaseConfig from './database/database.config';
 import AppConfig from './AppConfig';
+import { UserModule } from './user/UserModule';
 
 dotenv.config({ path: 'config.local.env' });
 
@@ -40,6 +41,7 @@ dotenv.config({ path: 'config.local.env' });
     AboutModule,
     BlogModule,
     AuthModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
