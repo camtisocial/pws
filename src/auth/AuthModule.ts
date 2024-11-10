@@ -4,9 +4,11 @@ import { AuthController } from './AuthController';
 import { LocalStrategy } from './strategies/LocalStrategy';
 import { JwtStrategy } from './strategies/JwtStrategy';
 import { PassportModule } from '@nestjs/passport';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from '../user/User.entity';
 import { JwtModule } from '@nestjs/jwt';
 import * as dotenv from 'dotenv';
-import { UserModule } from 'src/user/UserModule';
+import { UserModule } from '../user/UserModule';
 
 dotenv.config({ path: '../../config.local.env' });
 
@@ -18,6 +20,7 @@ dotenv.config({ path: '../../config.local.env' });
       signOptions: { expiresIn: process.env.JWT_EXPIRES_IN },
     }),
     UserModule,
+    TypeOrmModule.forFeature([User]),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],

@@ -12,11 +12,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class AuthService {
   constructor(
     @InjectRepository(User)
-    @InjectPinoLogger(AuthService.name)
-    private readonly logger: PinoLogger,
     private userRepository: Repository<User>,
     private jwtService: JwtService,
     private userService: UserService,
+    @InjectPinoLogger(AuthService.name)
+    private readonly logger: PinoLogger,
   ) {}
 
   async validateUser({ username, password }: AuthPayloadDto) {
