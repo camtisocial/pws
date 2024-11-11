@@ -10,6 +10,9 @@ COPY . .
 
 RUN npm run build
 
+COPY certs/server.key /etc/ssl/private/server.key
+COPY certs/server.cert /etc/ssl/certs/server.cert
+
 EXPOSE 3000
 
 CMD ["npm", "run", "start:dev"]

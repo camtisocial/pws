@@ -12,8 +12,8 @@ async function bootstrap() {
     otelSDK.start();
   }
   const httpsOptions = {
-    key: fs.readFileSync(process.env.SSL_KEY_PATH),
-    cert: fs.readFileSync(process.env.SSL_CERT_PATH),
+    key: fs.readFileSync(process.env.CERTS_KEY_PATH),
+    cert: fs.readFileSync(process.env.CERTS_CERT_PATH),
   };
   const app = await NestFactory.create(AppModule, {
     httpsOptions,
