@@ -28,7 +28,7 @@ export class AboutController {
   }
 
   @Delete(':id')
-  async deleteAbout(id: number): Promise<void> {
+  async deleteAbout(@Param('id') id: number): Promise<void> {
     return this.aboutService.deleteAbout(id);
   }
 

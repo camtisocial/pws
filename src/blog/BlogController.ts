@@ -17,8 +17,8 @@ import { BlogService } from './BlogService';
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}
   @Get()
-  getBlog(): string {
-    return this.blogService.getBlog();
+  getBlog(): Promise<Blog[]> {
+    return this.blogService.getBlogs();
   }
 
   @Post('create')
@@ -28,7 +28,7 @@ export class BlogController {
   }
 
   @Delete(':id')
-  async deleteBlog(id: number): Promise<void> {
+  async deleteBlog(@Param('id') id: number): Promise<void> {
     return this.blogService.deleteBlog(id);
   }
 

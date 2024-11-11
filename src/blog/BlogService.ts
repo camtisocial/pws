@@ -28,8 +28,4 @@ export class BlogService {
     await this.blogRepository.update(id, blogRequest);
     return this.blogRepository.findOneBy({ id });
   }
-
-  getBlog(): string {
-    return 'Hello Blog!!!';
-  }
 }
