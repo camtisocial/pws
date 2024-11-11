@@ -27,8 +27,4 @@ export class AboutService {
     await this.aboutRepository.update(id, aboutRequest);
     return this.aboutRepository.findOneBy({ id });
   }
-
-  getAbout(): string {
-    return 'Hello About';
-  }
 }

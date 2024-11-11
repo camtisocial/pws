@@ -17,8 +17,8 @@ import { AboutService } from './AboutService';
 export class AboutController {
   constructor(private readonly aboutService: AboutService) {}
   @Get()
-  getAbout(): string {
-    return this.aboutService.getAbout();
+  getAbout(): Promise<About[]> {
+    return this.aboutService.getAbouts();
   }
 
   @Post('create')
