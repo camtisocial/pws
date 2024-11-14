@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './AppController';
 import { AppService } from './AppService';
-import { AboutModule } from './about/AboutModule';
+import { GuestBookModule } from './guestBook/GuestBookModule';
 import { AuthModule } from './auth/AuthModule';
 import { BlogModule } from './blog/BlogModule';
 import { LoggerModule } from 'nestjs-pino';
@@ -38,7 +38,7 @@ dotenv.config({ path: 'config.local.env' });
         },
       },
     }),
-    AboutModule,
+    GuestBookModule,
     BlogModule,
     UserModule,
     AuthModule,
